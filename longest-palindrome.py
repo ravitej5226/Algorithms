@@ -6,7 +6,7 @@ class Solution(object):
         :rtype: str
         """
         hash_str='$'
-        print s
+        print(s)
         for i in range(len(s)):
             hash_str=hash_str+'#'+s[i]            
         
@@ -46,7 +46,7 @@ class Solution(object):
             if i+p[i]>r:
                 c=i
                 r=c+p[i]
-            print p
+            print(p)
             if max_length<p[i]:
                 max_length=p[i]
                 max_length_palindrome=''
@@ -59,7 +59,7 @@ class Solution(object):
                 if hash_str[t1] !='#':
                     max_length_palindrome=hash_str[t1]
                 
-                print max_length_palindrome
+                print(max_length_palindrome)
                 t1=t1+1
                 while t1<r1:
                     if hash_str[t1] != '#':
@@ -67,7 +67,7 @@ class Solution(object):
                     t1=t1+1
 
             
-        print max_length_palindrome
+        print(max_length_palindrome)
         
 
 s=Solution()

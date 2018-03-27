@@ -45,4 +45,4 @@ class Solution(object):
                 
         return ''.join(output)
 s=Solution();
-print s.convert('pa',2);
+print(s.convert('padjfslkjf',2))
