@@ -3,17 +3,16 @@
 # Input is guaranteed to be within the range from 1 to 3999.
 
 class Solution(object):
-    def computeRomanToInt(self,romanLiteral,previousValue,value):
-        roman_dict={'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+    roman_dict={'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+
+    def computeRomanToInt(self,romanLiteral,previousValue,value):        
         if(romanLiteral==''):
             #print(value)
             return value;
-        
+                
         literal=romanLiteral[-1];
-        currentValue=roman_dict[literal]
-        if(previousValue==0):
-            value=value+currentValue
-        elif(previousValue>currentValue):
+        currentValue=self.roman_dict[literal]
+        if(previousValue>currentValue):
             value=value-currentValue
         elif(previousValue<=currentValue):
             value=value+currentValue
@@ -26,7 +25,7 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        return self.computeRomanToInt(s.upper(),0,0)
+        return self.computeRomanToInt(s[:-1].upper(),self.roman_dict[s[-1]],self.roman_dict[s[-1]])
        
     
     
