@@ -29,4 +29,4 @@ class Solution(object):
         
 
 s=Solution();
-print s.reverse(103)
+print(s.reverse(103))
