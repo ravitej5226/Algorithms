@@ -43,7 +43,7 @@ class Solution(object):
                 next_roman_integer=self.roman_integer[index+1]
             # check if substraction is possible
             
-            if(index<5 and self.getSubstractedRomanLiterals(index,quotient)):
+            if(index<5 and self.canUseSubtractedRomanLiterals(index,num)):
                 self.result=self.result+self.getRomanLiteral(current_roman_integer)+self.getRomanLiteral(next_roman_integer)
             else:
                 self.result=self.result+quotient*self.getRomanLiteral(current_roman_integer)
@@ -51,11 +51,10 @@ class Solution(object):
             #print(self.result)
             return self.computeRomanLiteral(num%current_roman_integer,index-1)
     
-    def getSubstractedRomanLiterals(self,index,quotient):
-        if(self.roman_integer[index] in [5,50,500]):
-            return False;
-        elif(self.roman_integer[index+1]-self.roman_integer[index]==quotient*self.roman_integer[index]):
-            return True;
+    def canUseSubtractedRomanLiterals(self,index,num):
+        print('number: {0},index: {1}'.format(num,index))
+        print(self.roman_integer[index+1]-self.roman_integer[index])
+        print(self.roman_integer[index+1]-self.roman_integer[index-1])
         return False;
 
 
