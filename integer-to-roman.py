@@ -17,18 +17,20 @@
 # C can be placed before D (500) and M (1000) to make 400 and 900.
 # Given an integer, convert it to a roman numeral. Input is guaranteed to be within the range from 1 to 3999.
 class Solution(object):
-    roman_integer=[1,5,10,50,100,1000]
+    roman_integer=[1,5,10,50,100,500,1000]
     result=''
+    global_num=0
     def intToRoman(self, num):
         """
         :type num: int
         :rtype: str
         """
-        return self.computeRomanLiteral(num,5)
+        self.global_num=num
+        return self.computeRomanLiteral(num,6)
     
     def computeRomanLiteral(self,num,index):
         #print(num)
-        if(num==0):
+        if(num<=0):
             return self.result
         
         current_roman_integer=self.roman_integer[index]
@@ -39,23 +41,37 @@ class Solution(object):
         else:
             quotient=(int)(num/current_roman_integer)
 
-            if(index<5):
+            if(index<6):
                 next_roman_integer=self.roman_integer[index+1]
             # check if substraction is possible
             
-            if(index<5 and self.canUseSubtractedRomanLiterals(index,num)):
-                self.result=self.result+self.getRomanLiteral(current_roman_integer)+self.getRomanLiteral(next_roman_integer)
+            subtracted_literal=self.getSubtractedRomanLiterals(index,num)
+            if(index<6 and subtracted_literal != ''):
+                self.result=self.result+subtracted_literal
             else:
+                self.global_num=self.global_num-quotient*current_roman_integer
                 self.result=self.result+quotient*self.getRomanLiteral(current_roman_integer)
             
             #print(self.result)
-            return self.computeRomanLiteral(num%current_roman_integer,index-1)
+            return self.computeRomanLiteral(self.global_num,index-1)
     
-    def canUseSubtractedRomanLiterals(self,index,num):
-        print('number: {0},index: {1}'.format(num,index))
-        print(self.roman_integer[index+1]-self.roman_integer[index])
-        print(self.roman_integer[index+1]-self.roman_integer[index-1])
-        return False;
+    def getSubtractedRomanLiterals(self,index,num):
+        if(index<0 or index==6):
+            return ''
+        #print('number: {0},index: {1}'.format(num,index))
+        use_c=self.roman_integer[index+1]-self.roman_integer[index]
+        use_p=self.roman_integer[index+1]-self.roman_integer[index-1]
+        if(use_p>num):
+            return ''
+        elif((num-use_p<use_c and index-1>0) or num==use_p):
+            #print(use_p)            
+            self.global_num=num-use_p
+            return self.getRomanLiteral(self.roman_integer[index-1])+self.getRomanLiteral(self.roman_integer[index+1])
+        elif((num-use_p>use_c and use_p>0)or num==use_c):
+            #print(use_c)            
+            self.global_num=num-use_c
+            return self.getRomanLiteral(self.roman_integer[index])+self.getRomanLiteral(self.roman_integer[index+1])
+        return '';
 
 
     def getRomanLiteral(self,num):
@@ -65,4 +81,4 @@ class Solution(object):
                 return literal
 
 test=Solution()
-print(test.intToRoman(94))
+print(test.intToRoman(42))
