@@ -38,17 +38,22 @@ class Solution(object):
         """
         """
         pattern_dict={}
+        word_dict={}
         for index in range(len(word)):
             char=pattern[index]
-            if char not in pattern_dict:
+            char_in_word=word[index]
+            if char not in pattern_dict and char_in_word not in word_dict:                
                 pattern_dict[char]=word[index]
-            
-            if(pattern_dict[char]!=word[index]):
-                print(word)
+                word_dict[char_in_word]=pattern[index]
+
+            #print(pattern_dict) 
+            #print(word_dict) 
+            if char_in_word not in word_dict or char not in pattern_dict or pattern_dict[char]!=char_in_word:
+                #print(word)
                 return False
         
         return True
         
 
 s=Solution()
-s.findAndReplacePattern(["abc","deq","mee","aqq","dkd","aaa"],'abb')
+print(s.findAndReplacePattern(["abc","deq","mee","aqq","dkd","aaa"],'abb'))
