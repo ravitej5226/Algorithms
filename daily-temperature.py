@@ -27,7 +27,7 @@ class Solution(object):
                         break;
                 self.push(index)
                 self.temperature_dict[index]=current_temp
-        
+         
         return result                   
 
     
