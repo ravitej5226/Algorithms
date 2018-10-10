@@ -51,39 +51,52 @@ class Solution(object):
             if(root.right is not None):
                 rightBottom=self.findLeaf(root.right,index+1)
             
-            if(leftBottom is None):
-                print(leftBottom)
+            if(leftBottom is None):                
                 return rightBottom
-            else:
-                print(rightBottom)
+            elif(rightBottom is None):                
                 return leftBottom
+                
             if(leftBottom[1]>=rightBottom[1]):
                 return leftBottom
             else:
                 return rightBottom
 
 
-    def createBinaryTree(self,arr):
-        tree=None
-        for index in range(len(arr)):
-            node=TreeNode(arr[index])
-            print(node)
-            tree=self.addNode(node,tree)
-        return tree
+# Sample code that creates a binary tree
+def stringToTreeNode(input):
+    input = input.strip()
+    input = input[1:-1]
+    if not input:
+        return None
 
-    def addNode(self,node,btree):
-        if(btree is None):
-            btree=node
-            return btree
-        else:
-            if(btree.val>node.val):
-                btree.left=self.addNode(node,btree.left)
-                return btree
-            else:                
-                btree.right= self.addNode(node,btree.right)
-                return btree
+    inputValues = [s.strip() for s in input.split(',')]
+    root = TreeNode(int(inputValues[0]))
+    nodeQueue = [root]
+    front = 0
+    index = 1
+    while index < len(inputValues):
+        node = nodeQueue[front]
+        front = front + 1
+
+        item = inputValues[index]
+        index = index + 1
+        if item != "null":
+            leftNumber = int(item)
+            node.left = TreeNode(leftNumber)
+            nodeQueue.append(node.left)
+
+        if index >= len(inputValues):
+            break
+
+        item = inputValues[index]
+        index = index + 1
+        if item != "null":
+            rightNumber = int(item)
+            node.right = TreeNode(rightNumber)
+            nodeQueue.append(node.right)
+    return root
 
 s=Solution()
-tree=s.createBinaryTree([2,1,3])
+tree=stringToTreeNode("[1,2,3,4,null,5,6,null,null,7]")
 print(s.findBottomLeftValue(tree))
         
