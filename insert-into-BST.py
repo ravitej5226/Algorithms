@@ -52,13 +52,15 @@ class Solution(object):
                 root.left=node
                 return root
             else:
-               return self.insert(root.left,node)
+               root.left= self.insert(root.left,node)
+               return root
         else:
             if(root.right is None):
                 root.right=node
                 return root
             else:
-               return self.insert(root.right,node)
+               root.right= self.insert(root.right,node)
+               return root
 
 # Sample code that creates a binary tree
 def stringToTreeNode(input):
