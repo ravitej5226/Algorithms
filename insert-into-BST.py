@@ -97,6 +97,6 @@ def stringToTreeNode(input):
     return root
 
 
-s=Solution();
+s=Solution()
 root=stringToTreeNode("[4,2,7,1,3]")
 print(s.insertIntoBST(root,5))
