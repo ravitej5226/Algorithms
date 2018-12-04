@@ -1,0 +1,43 @@
+# Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
+
+# Note: Do not modify the linked list.
+
+# Follow up:
+# Can you solve it without using extra space?
+
+# Definition for singly-linked list.
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+class Solution(object):
+    def detectCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        slow=head
+        fast=head
+        while(slow and fast and fast.next):
+            slow=slow.next
+            fast=fast.next.next
+
+            if(slow==fast):
+                return 1
+        return None
+
+        
+a=ListNode(20)
+b=ListNode(4)
+c=ListNode(5)
+d=ListNode(15)
+e=ListNode(20)
+
+#a.next=b
+#b.next=c
+#c.next=d
+#d.next=a
+
+s=Solution()
+print(s.detectCycle(a))
