@@ -46,28 +46,63 @@ class Solution(object):
             1, 5], 3: [0, 4], 4: [1, 3, 5], 5: [2, 4]}
 
         # Initialize step counter
+        step=0
 
         # Initialize the visited queue
+        visited=[]
+
         # Initialize the looping queue
+        queue=[]
 
         # Load the queue with initial position
+        queue.append((0,start))
 
         # Loop queue till it is empty
-        # For each loop, if queue value is equal to target
-        # Break
+        while len(queue)>0:
 
-        # Else
-        # Get index of 0
-        # Get the adjacent swapping positions
+            current_step=queue.pop(0)
+            current=current_step[1]
+            print('current: '+str(current_step[0])+' , '+current_step[1])
+            # For each loop, if queue value is equal to target
+            if(current==target):
+                # Break
+                step=min(step if step>0 else float('inf'),current_step[0])
+                break
+            else:
+                # Else
+                # Get index of 0
+                index=current.index('0')
 
-        # For each position
-        # If not present in visited matrix, add it to looping queue
+                # Get the adjacent swapping positions
+                possible_swaps=adj_matrix[index]
 
-        # Increment the step counter
+                # For each position
+                for pos_index in possible_swaps:                        
+                    new_value=self.swap(current,index,pos_index)
+
+                    # If not present in visited matrix, add it to looping queue
+                    if new_value not in visited:
+                        visited.append(new_value)
+                        queue.append((current_step[0]+1,new_value))
+
+                    # Increment the step counter
+            
 
         # If step counter is 0, return -1
+        if(step==0 and len(visited)>0):
+            return -1
+        else:
+            return step
+
         # Else return step counter
+    
+    def swap(self,value,zero_index,index):
+        temp=list(value)
+        t_val=temp[index]
+        temp[index]=temp[zero_index]
+        temp[zero_index]=t_val
+        return ''.join(temp)
 
 
 s = Solution()
-print(s.slidingPuzzle([[1, 2, 3], [4, 5, 0]]))
+print(s.slidingPuzzle([[1,2,3],[4,0,5]]))
