@@ -62,7 +62,7 @@ class Solution(object):
 
             current_step=queue.pop(0)
             current=current_step[1]
-            print('current: '+str(current_step[0])+' , '+current_step[1])
+            #print('current: '+str(current_step[0])+' , '+current_step[1])
             # For each loop, if queue value is equal to target
             if(current==target):
                 # Break
