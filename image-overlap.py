@@ -56,11 +56,6 @@ class Solution(object):
                 
 
                 overlap=max(overlap,new_result.count('1'))
-
-                
-                
-                
-
         return overlap
 
 s=Solution()
