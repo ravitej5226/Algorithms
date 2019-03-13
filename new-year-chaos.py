@@ -115,27 +115,3 @@ t=[[2,5,1,3,4],[2,1,5,3,4],[1,2, 5, 3, 7, 8, 6,4],[1, 2, 5, 3, 4, 7, 8, 6]]
 for i in t:
     print(i)
     print(minimumBribes(i))
-
-#[2,1,5,3,4]
-
-# count=0
-#     for idx,i in enumerate(q):
-#         print(abs(i-(idx+1)))
-#         print(q)
-#         if(abs(i-(idx+1))>2):
-#             #print(i,idx)            
-#             print('Too Chaotic')
-#             return
-#         elif(i!=idx+1):
-#             temp=idx
-#             for x in range(i-1):
-#                 if(x+idx+1<len(q)):
-#                     q[x+idx]=q[x+idx+1]
-#                     count=count+1
-                
-        
-#             q[i-1]=i
-#     print(count)        
-#     return True
-
- #   return q
