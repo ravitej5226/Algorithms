@@ -18,11 +18,11 @@ class Solution(object):
                 result[idx]=0
                 r=anchor+1 if anchor==-1 else anchor
                 for x in range(r,idx):
-                    print(result)
+                    #print(result)
                     result[x]=min(x-anchor,idx-x) if anchor!=-1 else idx-x
                 anchor=idx
         for x in range(anchor,len(S)):
-                    print(result)
+                    #print(result)
                     result[x]=x-anchor
         return result
 
