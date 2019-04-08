@@ -35,7 +35,7 @@ class Solution(object):
             # if(i == 0):
             #     min_i = nums[i]
 
-            if(min_i==None or nums[i] < min_i):
+            if(min_i == None or nums[i] < min_i):
                 for x in range(len(nums[i:])):
                     current = x+i
                     # Find peak
